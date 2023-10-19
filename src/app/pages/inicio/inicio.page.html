@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>inicio</ion-title>
+  </ion-toolbar>
+
+  <ion-toolbar>
+    <ion-segment value="qr" (ionChange)="cambiarComponente($event)">
+
+      <ion-segment-button value="qr">
+        <ion-label>QR</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="miclase">
+        <ion-label>Mi clase</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="foro">
+        <ion-label>Foro</ion-label>
+      </ion-segment-button>
+
+      <ion-segment-button value="misdatos">
+        <ion-label>Mis datos</ion-label>
+      </ion-segment-button>
+
+    </ion-segment>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content >
+  <app-qr [hidden]="componenteActual !== 'qr'"></app-qr>
+
+  <app-miclase [hidden]="componenteActual !== 'miclase'"></app-miclase>
+
+  <app-foro [hidden]="componenteActual !== 'foro'"></app-foro>
+
+  <app-misdatos [hidden]="componenteActual !== 'misdatos'"></app-misdatos>
+
+</ion-content>
