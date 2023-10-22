@@ -12,6 +12,8 @@ import { IonicModule } from '@ionic/angular';
 })
 export class CorreoPage implements OnInit {
 
+  public email: string = '';
+
   constructor() { }
 
   ngOnInit() {

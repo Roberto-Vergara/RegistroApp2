@@ -15,16 +15,15 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginPage implements OnInit {
 
-  public usuario:Usuario;
-  public email:string;
-  public password:string;
+  public email:string="atorres@duocuc.cl";
+  public password:string="1234";
 
   
 
 
 
   constructor(private router:Router,private toastController:ToastController,private authService:AuthService) {
-    this.authService.login(this.email,this.password);
+    
     // this.usuario= new Usuario("","","","","");
     // this.email="as";
     // this.password="as";
@@ -52,9 +51,7 @@ export class LoginPage implements OnInit {
     //     message:"usuario invalido"
     //   }).then(e=>e.present())
     // }
-    console.log("gola");
-    
-    
+    this.authService.login(this.email,this.password);
   }
 
   public goCorreo():void{

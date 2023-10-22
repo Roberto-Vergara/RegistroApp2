@@ -1,9 +1,21 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>inicio</ion-title>
+<ion-header style="height: 12%; margin-bottom: 5%;">
+  <ion-toolbar color="primary" style="height: 100%;">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-3 col-md-6>
+          <img height="80%" class="logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Logo_DuocUC.svg/2560px-Logo_DuocUC.svg.png">
+        </ion-col>
+        <ion-col col-9 col-md-6>
+          <ion-title #titulo class="ion-text-left ion-text">
+            <div>
+              <h1 style="color: white;">Sistema de asistencia DUOC</h1>
+            </div>
+          </ion-title>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-toolbar>
-
-  <ion-toolbar>
+  <ion-toolbar color="secondary">
     <ion-segment value="qr" (ionChange)="cambiarComponente($event)">
 
       <ion-segment-button value="qr">
@@ -24,16 +36,15 @@
 
     </ion-segment>
   </ion-toolbar>
-
 </ion-header>
 
 <ion-content >
-  <app-qr [hidden]="componenteActual !== 'qr'"></app-qr>
-
-  <app-miclase [hidden]="componenteActual !== 'miclase'"></app-miclase>
-
-  <app-foro [hidden]="componenteActual !== 'foro'"></app-foro>
-
-  <app-misdatos [hidden]="componenteActual !== 'misdatos'"></app-misdatos>
+    <app-qr [hidden]="componenteActual !== 'qr'"></app-qr>
+  
+    <app-miclase [hidden]="componenteActual !== 'miclase'"></app-miclase>
+  
+    <app-foro [hidden]="componenteActual !== 'foro'"></app-foro>
+  
+    <app-misdatos [hidden]="componenteActual !== 'misdatos'"></app-misdatos>
 
 </ion-content>

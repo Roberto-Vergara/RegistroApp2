@@ -12,14 +12,16 @@ import { Capacitor } from '@capacitor/core';
 import { defineCustomElements as jeepSqlite} from 'jeep-sqlite/loader';
 import { APP_INITIALIZER } from '@angular/core';
 import { SQLiteService } from './app/services/sqlite.service';
-
-
 import { AuthService } from './app/services/auth.service';
 import { Storage } from '@ionic/storage-angular';
 import { APIClientService } from './app/services/apiclient.service';
 import { HttpClientModule } from '@angular/common/http';
+import { provideIonicAngular } from '@ionic/angular/standalone';
 import { InitializeAppService } from './app/services/initialize-app.service';
 import { DatabaseService } from './app/services/database.service';
+
+
+
 // CGV-FIN-1
 
 if (environment.production) {
@@ -59,6 +61,7 @@ bootstrapApplication(AppComponent, {
     provideRouter(routes),
     provideAnimations(),
     // CGV-INI-3: En esta sección se agregan los servicios que hemos implementado.
+    provideIonicAngular(),
     importProvidersFrom(IonicModule.forRoot({ innerHTMLTemplatesEnabled: true })),
     importProvidersFrom(HttpClientModule),
     InitializeAppService,
@@ -74,5 +77,5 @@ bootstrapApplication(AppComponent, {
       multi: true
     }
     // CGV-FIN-3
-  ],
+],
 });
