@@ -16,15 +16,14 @@
     <ion-card style="padding-top: 0;">
       <ion-card-title>Paso 1: Ingresa tu correo</ion-card-title>
       <ion-input style="margin-bottom: 10px;" type="text" [(ngModel)]="email" placeholder="Ingresa tu correo"></ion-input>
-      <!-- (click)="ingresarPaginaValidarRespuestaSecreta()" -->
-      <ion-button   shape="block" style="min-width: 20%; max-width: 25%; position: relative; left: 38%;" >
+
+      <ion-button (click)="ingresarPaginaValidarRespuestaSecreta()"  shape="block" style="min-width: 20%; max-width: 25%; position: relative; left: 38%;" >
         Recuperar contraseña
       </ion-button>
     </ion-card>
   
     <ion-label>
-      <!-- (click)="volverInicio()" -->
-      <a  style="color: white; cursor: pointer; text-decoration: none;">Volver al inicio</a>
+      <a  (click)="volverInicio()" style="color: white; cursor: pointer; text-decoration: none;">Volver al inicio</a>
     </ion-label>
   </div>
   
