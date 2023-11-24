@@ -6,7 +6,7 @@ import { showToast } from '../tools/message-routines';
 
 export interface Publicacion {
   id: string,
-  correo: string;
+  email: string;
   nombre: string;
   apellido: string;
   titulo: string;

@@ -13,7 +13,7 @@ export class DatabaseService {
       toVersion: 1,
       statements: [`
       CREATE TABLE IF NOT EXISTS USUARIO (
-        correo TEXT PRIMARY KEY NOT NULL,
+        email TEXT PRIMARY KEY NOT NULL,
         password TEXT NOT NULL,
         nombre TEXT NOT NULL,
         apellido TEXT NOT NULL,
@@ -27,6 +27,7 @@ export class DatabaseService {
 
   nombreBD = 'basedatos';
   db!: SQLiteDBConnection;
+  // lista con todos los usuarios
   listaUsuarios: BehaviorSubject<Usuario[]> = new BehaviorSubject<Usuario[]>([]);
   listaUsuariosFueActualizada: BehaviorSubject<boolean> = new BehaviorSubject(false);
   datosQR: BehaviorSubject<string> = new BehaviorSubject('');
@@ -52,6 +53,7 @@ export class DatabaseService {
     await this.guardarUsuario(Usuario.getUsuario('atorres@duocuc.cl', '1234', 'Ana', 'Torres', 'Nombre de mi mascota', 'gato', 'N'));
     await this.guardarUsuario(Usuario.getUsuario('avalenzuela@duocuc.cl', 'qwer', 'Alberto', 'Valenzuela', 'Mi mejor amigo', 'juanito', 'N'));
     await this.guardarUsuario(Usuario.getUsuario('cfuentes@duocuc.cl', 'asdf', 'Carla', 'Fuentes', 'Dónde nació mamá', 'valparaiso', 'N'));
+    await this.guardarUsuario(Usuario.getUsuario("admin@admin.cl","admin123","admin","admin","vocacion","admin","N"));
   }
 
   // Create y Update del CRUD. La creación y actualización de un usuario
@@ -60,7 +62,7 @@ export class DatabaseService {
   // pero si el registro ya existe, entonces los actualiza.
   
   async guardarUsuario(usuario: Usuario) {
-    const sql = 'INSERT OR REPLACE INTO USUARIO (correo, password, nombre, apellido, ' +
+    const sql = 'INSERT OR REPLACE INTO USUARIO (email, password, nombre, apellido, ' +
       'preguntaSecreta, respuestaSecreta, sesionActiva) VALUES (?,?,?,?,?,?,?);';
     await this.db.run(sql, [usuario.email, usuario.password, usuario.nombre, usuario.apellido, 
       usuario.preguntaSecreta, usuario.respuestaSecreta, usuario.sesionActiva]);
@@ -81,29 +83,34 @@ export class DatabaseService {
   }
 
   // Read del CRUD
-  async leerUsuario(correo: string): Promise<Usuario | undefined> {
-    const usuarios: Usuario[]= (await this.db.query('SELECT * FROM USUARIO WHERE correo=?;', [correo])).values as Usuario[];
+  async leerUsuario(email: string): Promise<Usuario | undefined> {
+    const usuarios: Usuario[]= (await this.db.query('SELECT * FROM USUARIO WHERE email=?;', [email])).values as Usuario[];
     return usuarios[0];
   }
 
+  async devolverUsuarios(){
+    const usuarios: Usuario[]= (await this.db.query('SELECT * FROM USUARIO WHERE nombre!=?;',['admin'])).values as Usuario[];
+    return usuarios;
+  }
+
   // Delete del CRUD
-  async eliminarUsuarioUsandoCorreo(correo: string) {
-    const sql = 'DELETE FROM USUARIO WHERE correo=?';
-    await this.db.run(sql, [correo]);
+  async eliminarUsuarioUsandoemail(email: string) {
+    const sql = 'DELETE FROM USUARIO WHERE email=?';
+    await this.db.run(sql, [email]);
     await this.leerUsuarios();
   }
 
   // Validar usuario
-  async validarUsuario(correo: string, password: string): Promise<Usuario | undefined> {
-    const usuarios: Usuario[]= (await this.db.query('SELECT * FROM USUARIO WHERE correo=? AND password=?;',
-      [correo, password])).values as Usuario[];
+  async validarUsuario(email: string, password: string): Promise<Usuario | undefined> {
+    const usuarios: Usuario[]= (await this.db.query('SELECT * FROM USUARIO WHERE email=? AND password=?;',
+      [email, password])).values as Usuario[];
     return usuarios[0];
   }
 
   // Actualizar sesión activa
-  async actualizarSesionActiva(correo: string, sesionActiva: string) {
-    const sql = 'UPDATE USUARIO SET sesionActiva=? WHERE correo=?';
-    await this.db.run(sql, [sesionActiva, correo]);
+  async actualizarSesionActiva(email: string, sesionActiva: string) {
+    const sql = 'UPDATE USUARIO SET sesionActiva=? WHERE email=?';
+    await this.db.run(sql, [sesionActiva, email]);
     await this.leerUsuarios();
   }
 }

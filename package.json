@@ -37,6 +37,7 @@
     "jeep-sqlite": "^2.5.3",
     "jsqr": "^1.4.0",
     "native-run": "^1.7.3",
+    "protractor": "^7.0.0",
     "rxjs": "^7.4.0",
     "sql.js": "^1.8.0",
     "tslib": "^2.3.0",

@@ -19,7 +19,7 @@
     <ion-segment value="qr" (ionChange)="cambiarComponente($event)">
 
       <ion-segment-button value="qr">
-        <ion-label>QR</ion-label>
+        <ion-label >QR</ion-label>
       </ion-segment-button>
 
       <ion-segment-button value="miclase">
@@ -34,6 +34,10 @@
         <ion-label>Mis datos</ion-label>
       </ion-segment-button>
 
+      <ion-segment-button *ngIf="usuario.nombre =='admin' && usuario.apellido =='admin' && usuario.email =='admin@admin.cl'" value="admin">
+        <ion-label>Admin</ion-label>
+      </ion-segment-button>
+
     </ion-segment>
   </ion-toolbar>
 </ion-header>
@@ -46,5 +50,7 @@
     <app-foro [hidden]="componenteActual !== 'foro'"></app-foro>
   
     <app-misdatos [hidden]="componenteActual !== 'misdatos'"></app-misdatos>
+
+    <app-admin  [hidden]="componenteActual !== 'admin'"></app-admin>
 
 </ion-content>
