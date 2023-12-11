@@ -1,0 +1,19 @@
+{
+  "publicaciones": [
+    {
+      "id": "001",
+      "email": "asd.com",
+      "nombre": "aaa",
+      "apellido": "yaxs",
+      "titulo": "aasd",
+      "contenido": "peasogil"
+    },
+    {
+      "id": "aWGxWT1",
+      "nombre": "Ana",
+      "apellido": "Torres",
+      "titulo": "hola gente",
+      "contenido": "maemiaelbicho"
+    }
+  ]
+}

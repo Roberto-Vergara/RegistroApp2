@@ -1,0 +1,55 @@
+
+
+  <ion-header  [translucent]="true" >
+    <ion-toolbar class="ion-text-center">
+      <ion-item>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Logo_DuocUC.svg/2560px-Logo_DuocUC.svg.png" width="50px" />
+      <ion-title>
+        <h1 class="h1Title">Asistencia DUOC</h1>
+      </ion-title>
+      </ion-item>
+        
+    </ion-toolbar>
+  </ion-header>
+
+
+  <ion-content class="ion-text-center" style="height: 100vh;" [fullscreen]="true">
+
+    <div class="mi-contenido">
+      <ion-card class="ion-text-center">
+      
+        <ion-label><h2>Inicio de sesión</h2></ion-label>
+        <ion-card-content >
+          <form >
+    
+            <ion-item>
+              <!--====hay que poner el ngModel y el name igual o por lo menos que no haya interferencia con otras variables
+                , osea en este caso los ngModel tiene usuario.email o podria ser email si esta sin clases y name puede ser email o incluso ema
+                pero deben coincidir sin problemas==-->
+              <ion-input id="email" [(ngModel)]="email" name="email" type="email" label="Correo" labelPlacement="floating"></ion-input>
+            </ion-item>
+    
+            <ion-item>
+              <ion-input id="password" [(ngModel)]="password" name="password" type="password" label="Contraseña" labelPlacement="floating"></ion-input>
+            </ion-item>
+            
+            <br>
+            <!-- (click)="evento()" evento del boton-->
+            <ion-button (click)="ingresar()"  shape="block" style="min-width: 20%; max-width: 30%; position: relative; left: 70%;" >
+              Ingresar
+            </ion-button>
+          </form>
+          
+          
+        </ion-card-content>
+    
+      </ion-card>
+      <ion-label >
+        <a class="umama" (click)="goCorreo()">Recuperar Contraseña</a>
+      </ion-label>
+  
+    </div>
+  
+    
+      
+  </ion-content>
